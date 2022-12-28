@@ -2,13 +2,25 @@ import React, { useState } from 'react';
 import Botao from '../Botao';
 import style from './Formulario.module.scss';
 import { TarefaProps } from '../types/tarefa';
+import { v4 as uuidv4 } from 'uuid'
 
 const Formulario = ({setTarefas}: {setTarefas: React.Dispatch<React.SetStateAction<TarefaProps[]>>}) => {
   const [tarefaAtual, setTarefa] = useState<String>('');
   const [tempoAtual, setTempo] = useState<String>('00:00');
   const adicionarTarefa = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    setTarefas(tarefasAntigas => [...tarefasAntigas, {tarefa: tarefaAtual as string, tempo: tempoAtual as string}]);
+    setTarefas(tarefasAntigas => [
+      ...tarefasAntigas, 
+      {
+        ...{tarefa: tarefaAtual as string, tempo: tempoAtual as string},
+        selecionado: false,
+        completado: false,
+        id: uuidv4()
+      }
+
+    ]);
+    setTarefa('');
+    setTempo('00:00:00');
   }
   return (
     <form className={style.novaTarefa} onSubmit={adicionarTarefa}>

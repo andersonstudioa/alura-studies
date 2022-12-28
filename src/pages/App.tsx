@@ -7,20 +7,7 @@ import { TarefaProps } from '../components/types/tarefa';
 
 
 function App() {
-  const [tarefas, setTarefas] = useState<TarefaProps[] | []>([
-    {
-      tarefa: 'React',
-      tempo: '01:00:00'
-    },
-    {
-      tarefa: 'JavaScript',
-      tempo: '02:00:00'
-    },
-    {
-      tarefa: 'TypeScript',
-      tempo: '03:00:00'
-    }
-  ]);
+  const [tarefas, setTarefas] = useState<TarefaProps[] | []>([]);
   
   return (
     <div className={style.AppStyle}>
