@@ -1,14 +1,17 @@
-import { ReactElement } from 'react'
 import style from './Botao.module.scss'
 
-interface BotaoProps {
-    children: ReactElement | string
-    type?: "button" | "submit" | "reset"
+interface Props {
+    children: React.ReactNode | string
+    type?: "button" | "submit" | "reset" | undefined, onClick?: () => void
 }
 
-const Botao = (props: BotaoProps) => {
+const Botao = (props: Props) => {
+    const { type = "button", onClick} = props;
     return (
-        <button type={props.type} className={style.botao}>
+        <button 
+            onClick={onClick}
+            type={type}
+            className={style.botao}>
             {props.children}
         </button>
     )
